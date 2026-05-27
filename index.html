@@ -1,14 +1,297 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitSlim</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>FitSlim — фітнес, схуднення та харчування</title>
+  <meta name="description" content="Онлайн-програми тренувань для схуднення, фітнесу та правильного харчування." />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>FitSlim — сайт працює!</h1>
-  <p>Тренування, схуднення та правильне харчування.</p>
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">Fit<span>Slim</span></a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Відкрити меню">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#programs">Програми</a>
+        <a href="#benefits">Переваги</a>
+        <a href="#reviews">Відгуки</a>
+        <a href="#contact">Заявка</a>
+      </nav>
+
+      <button class="cart-btn" id="openCartBtn">
+        Кошик <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="tag">Онлайн-фітнес для дому</p>
+
+          <h1>Схуднення, фітнес і правильне харчування без хаосу</h1>
+
+          <p class="hero-text">
+            Обери готову програму тренувань, план харчування або повний пакет.
+            Займайся вдома у зручний час і поступово покращуй форму.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#programs" class="btn primary">Обрати програму</a>
+            <a href="#contact" class="btn secondary">Залишити заявку</a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <strong>15–40</strong>
+              <span>хвилин на день</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>тренажерів потрібно</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>доступ онлайн</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h2>Стартовий пакет</h2>
+          <p>7 днів легких тренувань + базові правила харчування.</p>
+          <div class="price">299 грн</div>
+          <button class="btn primary add-to-cart" data-id="start">Додати в кошик</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="benefits">
+      <div class="section-title">
+        <p class="tag">Переваги</p>
+        <h2>Чому це зручно</h2>
+        <p>
+          Простий формат для тих, хто хоче почати без спортзалу,
+          складних дієт і дорогого обладнання.
+        </p>
+      </div>
+
+      <div class="benefits">
+        <article class="benefit-card">
+          <div class="emoji">🔥</div>
+          <h3>Вправи для схуднення</h3>
+          <p>Кардіо, функціональні рухи та комплекси для домашніх тренувань.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="emoji">🥗</div>
+          <h3>Правильне харчування</h3>
+          <p>Зрозумілі рекомендації без голодування та жорстких обмежень.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="emoji">🏠</div>
+          <h3>Тренування вдома</h3>
+          <p>Не потрібні тренажери. Достатньо бажання, місця і регулярності.</p>
+        </article>
+
+        <article class="benefit-card">
+          <div class="emoji">📱</div>
+          <h3>Онлайн-доступ</h3>
+          <p>Матеріали доступні з телефону, планшета або комп’ютера.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section programs-section" id="programs">
+      <div class="container">
+        <div class="section-title">
+          <p class="tag">Пакети</p>
+          <h2>Обери свою програму</h2>
+          <p>Додай потрібний пакет у кошик і залиш заявку.</p>
+        </div>
+
+        <div class="programs">
+          <article class="program-card">
+            <span class="label">Старт</span>
+            <h3>7 днів легкого старту</h3>
+            <p>Для новачків, які хочуть м’яко увійти у тренування.</p>
+
+            <ul>
+              <li>7 домашніх тренувань</li>
+              <li>Розминка та заминка</li>
+              <li>Базові правила харчування</li>
+              <li>PDF-план на тиждень</li>
+            </ul>
+
+            <div class="program-bottom">
+              <div class="price">299 грн</div>
+              <button class="btn primary add-to-cart" data-id="start">Купити</button>
+            </div>
+          </article>
+
+          <article class="program-card popular">
+            <span class="popular-badge">Популярне</span>
+            <span class="label">Баланс</span>
+            <h3>21 день схуднення</h3>
+            <p>Комплекс тренувань і харчування для стабільного режиму.</p>
+
+            <ul>
+              <li>21 день тренувань</li>
+              <li>План харчування</li>
+              <li>Список продуктів</li>
+              <li>Трекер звичок</li>
+              <li>Рекомендації з відновлення</li>
+            </ul>
+
+            <div class="program-bottom">
+              <div class="price">799 грн</div>
+              <button class="btn primary add-to-cart" data-id="slim21">Купити</button>
+            </div>
+          </article>
+
+          <article class="program-card">
+            <span class="label">Преміум</span>
+            <h3>30 днів фітнесу + меню</h3>
+            <p>Повний план для дому з меню, вправами та чек-листами.</p>
+
+            <ul>
+              <li>30 днів тренувань</li>
+              <li>Меню на 4 тижні</li>
+              <li>Варіанти заміни продуктів</li>
+              <li>Чек-листи прогресу</li>
+              <li>Підбір пакету через заявку</li>
+            </ul>
+
+            <div class="program-bottom">
+              <div class="price">1299 грн</div>
+              <button class="btn primary add-to-cart" data-id="premium30">Купити</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="cta">
+        <div>
+          <p class="tag light">Стартуй сьогодні</p>
+          <h2>15 хвилин на день — хороший початок</h2>
+          <p>
+            Не треба чекати ідеального моменту. Почни з простого плану,
+            поступово збільшуй активність і слідкуй за харчуванням.
+          </p>
+        </div>
+
+        <a href="#programs" class="btn white">Переглянути пакети</a>
+      </div>
+    </section>
+
+    <section class="section container" id="reviews">
+      <div class="section-title">
+        <p class="tag">Відгуки</p>
+        <h2>Що кажуть клієнти</h2>
+      </div>
+
+      <div class="reviews">
+        <article class="review-card">
+          <p>“Сподобалось, що тренування короткі. Можна робити після роботи вдома.”</p>
+          <strong>Олена, 29 років</strong>
+        </article>
+
+        <article class="review-card">
+          <p>“План харчування простий. Не потрібно голодувати, все зрозуміло.”</p>
+          <strong>Марина, 34 роки</strong>
+        </article>
+
+        <article class="review-card">
+          <p>“Додав програму в кошик, залишив заявку — все швидко і зручно.”</p>
+          <strong>Андрій, 31 рік</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="tag light">Заявка</p>
+          <h2>Залиш заявку на програму</h2>
+          <p>
+            Заповни форму, і ми зв’яжемося з тобою для підтвердження замовлення.
+          </p>
+
+          <div class="warning">
+            Важливо: інформація на сайті не є медичною консультацією.
+            Якщо маєш проблеми зі здоров’ям, проконсультуйся з лікарем перед тренуваннями.
+          </div>
+        </div>
+
+        <form class="form" id="orderForm">
+          <label>
+            Ім’я
+            <input type="text" name="name" placeholder="Наприклад, Анна" required />
+          </label>
+
+          <label>
+            Телефон або Telegram
+            <input type="text" name="contact" placeholder="+380 або @username" required />
+          </label>
+
+          <label>
+            Програма
+            <select name="program" required>
+              <option value="">Оберіть програму</option>
+              <option value="7 днів легкого старту">7 днів легкого старту</option>
+              <option value="21 день схуднення">21 день схуднення</option>
+              <option value="30 днів фітнесу + меню">30 днів фітнесу + меню</option>
+            </select>
+          </label>
+
+          <label>
+            Коментар
+            <textarea name="message" rows="5" placeholder="Наприклад: хочу тренуватися вдома"></textarea>
+          </label>
+
+          <button type="submit" class="btn primary">Відправити заявку</button>
+          <p class="form-message" id="formMessage"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart" id="cartPanel">
+    <div class="cart-box">
+      <div class="cart-header">
+        <h2>Кошик</h2>
+        <button class="close-cart" id="closeCartBtn">×</button>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer">
+        <div class="total">
+          <span>Разом:</span>
+          <strong id="cartTotal">0 грн</strong>
+        </div>
+
+        <button class="btn primary" id="checkoutBtn">Оформити заявку</button>
+        <button class="btn gray" id="clearCartBtn">Очистити кошик</button>
+      </div>
+    </div>
+  </aside>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> FitSlim</p>
+      <p>Тренування · Схуднення · Харчування</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

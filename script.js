@@ -1,5 +1,3 @@
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mredrkvr";
-
 const products = {
   start: {
     id: "start",
@@ -140,7 +138,7 @@ function renderCart() {
             <strong>${formatPrice(itemTotal)}</strong>
           </div>
 
-          <button class="remove-item" data-id="${product.id}">
+          <button class="remove-item" data-id="${product.id}" type="button">
             Видалити
           </button>
         </div>
@@ -192,92 +190,9 @@ function fillFormFromCart() {
     return;
   }
 
-  orderForm.elements.message.value = `Хочу оформити замовлення: ${summary}. Сума: ${formatPrice(getCartTotal())}`;
+  const fullMessage = `Хочу оформити замовлення: ${summary}. Сума: ${formatPrice(getCartTotal())}`;
+  orderForm.elements.message.value = fullMessage;
   formMessage.textContent = "Дані з кошика додано у форму заявки.";
-}
-
-async function sendOrderToFormspree(order) {
-  const response = await fetch(FORMSPREE_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(order)
-  });
-
-  if (!response.ok) {
-    throw new Error("Помилка відправлення заявки");
-  }
-
-  return response.json();
-}
-
-async function handleOrderSubmit(event) {
-  event.preventDefault();
-
-  const submitButton = orderForm.querySelector('button[type="submit"]');
-  const formData = new FormData(orderForm);
-
-  const name = String(formData.get("name")).trim();
-  const contact = String(formData.get("contact")).trim();
-  const program = String(formData.get("program")).trim();
-  const message = String(formData.get("message")).trim();
-
-  if (name.length < 2) {
-    formMessage.textContent = "Введіть коректне ім’я.";
-    return;
-  }
-
-  if (contact.length < 5) {
-    formMessage.textContent = "Введіть телефон або Telegram.";
-    return;
-  }
-
-  if (!program) {
-    formMessage.textContent = "Оберіть програму.";
-    return;
-  }
-
-  const order = {
-    _subject: "Нова заявка з сайту FitSlim",
-    name,
-    contact,
-    program,
-    message,
-    cart: cart.map((item) => {
-      const product = products[item.id];
-
-      return {
-        title: product.title,
-        price: product.price,
-        quantity: item.quantity,
-        total: product.price * item.quantity
-      };
-    }),
-    cartSummary: getOrderSummary() || "Кошик порожній",
-    total: formatPrice(getCartTotal()),
-    site: "FitSlim",
-    createdAt: new Date().toLocaleString("uk-UA")
-  };
-
-  try {
-    submitButton.disabled = true;
-    submitButton.textContent = "Відправляємо...";
-    formMessage.textContent = "Заявка відправляється...";
-
-    await sendOrderToFormspree(order);
-
-    formMessage.textContent = "Заявку відправлено! Ми скоро зв’яжемося з вами.";
-    orderForm.reset();
-    clearCart();
-  } catch (error) {
-    console.error(error);
-    formMessage.textContent = "Не вдалося відправити заявку. Спробуйте ще раз або напишіть нам напряму.";
-  } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Відправити заявку";
-  }
 }
 
 document.querySelectorAll(".add-to-cart").forEach((button) => {
@@ -300,7 +215,6 @@ openCartBtn.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart);
 clearCartBtn.addEventListener("click", clearCart);
 checkoutBtn.addEventListener("click", fillFormFromCart);
-// orderForm.addEventListener("submit", handleOrderSubmit);
 
 cartPanel.addEventListener("click", (event) => {
   if (event.target === cartPanel) {

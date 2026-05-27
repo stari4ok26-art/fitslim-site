@@ -66,9 +66,10 @@ button {
 
 .logo {
   color: var(--white);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 900;
   letter-spacing: -1px;
+  white-space: nowrap;
 }
 
 .logo span {
@@ -105,6 +106,7 @@ button {
   padding: 10px 15px;
   border-radius: 999px;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .cart-btn span {
@@ -121,8 +123,9 @@ button {
 .hero {
   color: var(--white);
   background:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(21, 128, 61, 0.68)),
-    url("https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1600&q=80");
+    radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.22), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.18), transparent 30%),
+    linear-gradient(135deg, #0f172a, #14532d);
   background-size: cover;
   background-position: center;
 }
@@ -185,6 +188,7 @@ button {
   border-radius: 999px;
   font-weight: 900;
   transition: 0.2s ease;
+  text-align: center;
 }
 
 .btn:hover {
@@ -418,10 +422,8 @@ button {
   padding: 42px;
   color: var(--white);
   background:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(22, 101, 52, 0.84)),
-    url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80");
-  background-size: cover;
-  background-position: center;
+    radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.22), transparent 30%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(22, 101, 52, 0.84));
   border-radius: 34px;
   box-shadow: var(--shadow);
 }
@@ -674,8 +676,12 @@ button {
 }
 
 @media (max-width: 620px) {
+  .nav {
+    gap: 10px;
+  }
+
   .logo {
-    font-size: 23px;
+    font-size: 18px;
   }
 
   .cart-btn {
@@ -694,6 +700,10 @@ button {
   .hero-actions,
   .hero-stats {
     flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .benefits,

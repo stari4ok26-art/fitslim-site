@@ -232,7 +232,9 @@
           </div>
         </div>
 
-        <form class="form" id="orderForm">
+        <form class="form" id="orderForm" action="https://formspree.io/f/mredrkvr" method="POST">
+          <input type="hidden" name="_subject" value="Нова заявка з сайту FitSlim">
+
           <label>
             Ім’я
             <input type="text" name="name" placeholder="Наприклад, Анна" required />
@@ -269,7 +271,7 @@
     <div class="cart-box">
       <div class="cart-header">
         <h2>Кошик</h2>
-        <button class="close-cart" id="closeCartBtn">×</button>
+        <button class="close-cart" id="closeCartBtn" type="button">×</button>
       </div>
 
       <div class="cart-items" id="cartItems"></div>
@@ -280,8 +282,8 @@
           <strong id="cartTotal">0 грн</strong>
         </div>
 
-        <button class="btn primary" id="checkoutBtn">Оформити заявку</button>
-        <button class="btn gray" id="clearCartBtn">Очистити кошик</button>
+        <button class="btn primary" id="checkoutBtn" type="button">Оформити заявку</button>
+        <button class="btn gray" id="clearCartBtn" type="button">Очистити кошик</button>
       </div>
     </div>
   </aside>

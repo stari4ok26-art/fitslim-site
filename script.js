@@ -176,6 +176,21 @@ function getOrderSummary() {
     .join(", ");
 }
 
+function getDetailedCartText() {
+  if (cart.length === 0) {
+    return "Кошик порожній";
+  }
+
+  return cart
+    .map((item) => {
+      const product = products[item.id];
+      const itemTotal = product.price * item.quantity;
+
+      return `${product.title} — ${item.quantity} шт. — ${formatPrice(itemTotal)}`;
+    })
+    .join("\n");
+}
+
 function fillFormFromCart() {
   const summary = getOrderSummary();
 
@@ -193,6 +208,62 @@ function fillFormFromCart() {
   const fullMessage = `Хочу оформити замовлення: ${summary}. Сума: ${formatPrice(getCartTotal())}`;
   orderForm.elements.message.value = fullMessage;
   formMessage.textContent = "Дані з кошика додано у форму заявки.";
+}
+
+function showFormMessage(message, type = "info") {
+  formMessage.textContent = message;
+
+  if (type === "error") {
+    formMessage.style.color = "#dc2626";
+  } else {
+    formMessage.style.color = "#16a34a";
+  }
+}
+
+async function submitFormWithRedirect(event) {
+  event.preventDefault();
+
+  const submitButton = orderForm.querySelector('button[type="submit"]');
+  const formData = new FormData(orderForm);
+
+  formData.append("cart_summary", getOrderSummary() || "Кошик порожній");
+  formData.append("cart_details", getDetailedCartText());
+  formData.append("cart_total", formatPrice(getCartTotal()));
+  formData.append("site", "FitSlim");
+  formData.append("submitted_at", new Date().toLocaleString("uk-UA"));
+
+  try {
+    submitButton.disabled = true;
+    submitButton.textContent = "Відправляємо...";
+    showFormMessage("Заявка відправляється...");
+
+    const response = await fetch(orderForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Formspree submission failed");
+    }
+
+    clearCart();
+    orderForm.reset();
+
+    window.location.href = "thank-you.html";
+  } catch (error) {
+    console.error(error);
+
+    submitButton.disabled = false;
+    submitButton.textContent = "Відправити заявку";
+
+    showFormMessage(
+      "Не вдалося відправити заявку автоматично. Спробуйте ще раз.",
+      "error"
+    );
+  }
 }
 
 document.querySelectorAll(".add-to-cart").forEach((button) => {
@@ -215,6 +286,7 @@ openCartBtn.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart);
 clearCartBtn.addEventListener("click", clearCart);
 checkoutBtn.addEventListener("click", fillFormFromCart);
+orderForm.addEventListener("submit", submitFormWithRedirect);
 
 cartPanel.addEventListener("click", (event) => {
   if (event.target === cartPanel) {

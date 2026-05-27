@@ -1,3 +1,5 @@
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mredrkvr";
+
 const products = {
   start: {
     id: "start",
@@ -194,9 +196,27 @@ function fillFormFromCart() {
   formMessage.textContent = "Дані з кошика додано у форму заявки.";
 }
 
-function handleOrderSubmit(event) {
+async function sendOrderToFormspree(order) {
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(order)
+  });
+
+  if (!response.ok) {
+    throw new Error("Помилка відправлення заявки");
+  }
+
+  return response.json();
+}
+
+async function handleOrderSubmit(event) {
   event.preventDefault();
 
+  const submitButton = orderForm.querySelector('button[type="submit"]');
   const formData = new FormData(orderForm);
 
   const name = String(formData.get("name")).trim();
@@ -220,20 +240,44 @@ function handleOrderSubmit(event) {
   }
 
   const order = {
+    _subject: "Нова заявка з сайту FitSlim",
     name,
     contact,
     program,
     message,
-    cart,
-    total: getCartTotal(),
-    createdAt: new Date().toISOString()
+    cart: cart.map((item) => {
+      const product = products[item.id];
+
+      return {
+        title: product.title,
+        price: product.price,
+        quantity: item.quantity,
+        total: product.price * item.quantity
+      };
+    }),
+    cartSummary: getOrderSummary() || "Кошик порожній",
+    total: formatPrice(getCartTotal()),
+    site: "FitSlim",
+    createdAt: new Date().toLocaleString("uk-UA")
   };
 
-  console.log("Нова заявка:", order);
+  try {
+    submitButton.disabled = true;
+    submitButton.textContent = "Відправляємо...";
+    formMessage.textContent = "Заявка відправляється...";
 
-  formMessage.textContent = "Заявку відправлено! Ми скоро зв’яжемося з вами.";
-  orderForm.reset();
-  clearCart();
+    await sendOrderToFormspree(order);
+
+    formMessage.textContent = "Заявку відправлено! Ми скоро зв’яжемося з вами.";
+    orderForm.reset();
+    clearCart();
+  } catch (error) {
+    console.error(error);
+    formMessage.textContent = "Не вдалося відправити заявку. Спробуйте ще раз або напишіть нам напряму.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Відправити заявку";
+  }
 }
 
 document.querySelectorAll(".add-to-cart").forEach((button) => {

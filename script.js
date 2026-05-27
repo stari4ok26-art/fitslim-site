@@ -2,8 +2,8 @@ const products = {
   start: {
     id: "start",
     title: "7 днів легкого старту",
-    description: "Домашні тренування + базові правила харчування",
-    price: 299
+    description: "Безкоштовний стартовий план: домашні тренування + базові правила харчування",
+    price: 0
   },
   slim21: {
     id: "slim21",
@@ -62,6 +62,14 @@ function saveCart() {
 }
 
 function formatPrice(price) {
+  if (price === 0) {
+    return "Безкоштовно";
+  }
+
+  return `${price.toLocaleString("uk-UA")} грн`;
+}
+
+function formatTotal(price) {
   return `${price.toLocaleString("uk-UA")} грн`;
 }
 
@@ -113,7 +121,7 @@ function clearCart() {
 
 function renderCart() {
   cartCount.textContent = getCartCount();
-  cartTotal.textContent = formatPrice(getCartTotal());
+  cartTotal.textContent = formatTotal(getCartTotal());
 
   if (cart.length === 0) {
     cartItems.innerHTML = `
@@ -171,7 +179,7 @@ function getOrderSummary() {
   return cart
     .map((item) => {
       const product = products[item.id];
-      return `${product.title} x${item.quantity}`;
+      return `${product.title} x${item.quantity} — ${formatPrice(product.price)}`;
     })
     .join(", ");
 }
@@ -205,7 +213,7 @@ function fillFormFromCart() {
     return;
   }
 
-  const fullMessage = `Хочу оформити замовлення: ${summary}. Сума: ${formatPrice(getCartTotal())}`;
+  const fullMessage = `Хочу оформити замовлення: ${summary}. Сума: ${formatTotal(getCartTotal())}`;
   orderForm.elements.message.value = fullMessage;
   formMessage.textContent = "Дані з кошика додано у форму заявки.";
 }
@@ -228,8 +236,8 @@ async function submitFormWithRedirect(event) {
 
   formData.append("cart_summary", getOrderSummary() || "Кошик порожній");
   formData.append("cart_details", getDetailedCartText());
-  formData.append("cart_total", formatPrice(getCartTotal()));
-  formData.append("site", "FitSlim");
+  formData.append("cart_total", formatTotal(getCartTotal()));
+  formData.append("site", "Форма без понтів");
   formData.append("submitted_at", new Date().toLocaleString("uk-UA"));
 
   try {

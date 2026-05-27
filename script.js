@@ -300,7 +300,7 @@ openCartBtn.addEventListener("click", openCart);
 closeCartBtn.addEventListener("click", closeCart);
 clearCartBtn.addEventListener("click", clearCart);
 checkoutBtn.addEventListener("click", fillFormFromCart);
-orderForm.addEventListener("submit", handleOrderSubmit);
+// orderForm.addEventListener("submit", handleOrderSubmit);
 
 cartPanel.addEventListener("click", (event) => {
   if (event.target === cartPanel) {

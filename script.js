@@ -1,19 +1,22 @@
 const products = {
   start: {
     id: "start",
-    title: "7 днів легкого старту",
+    title: "СТАРТ 7 днів",
+    formValue: "СТАРТ 7 днів — безкоштовно",
     description: "Безкоштовний стартовий план: домашні тренування + базові правила харчування",
     price: 0
   },
   slim21: {
     id: "slim21",
     title: "21 день схуднення",
+    formValue: "21 день схуднення — 799 грн",
     description: "Тренування, план харчування, список продуктів і трекер",
     price: 799
   },
   premium30: {
     id: "premium30",
     title: "30 днів фітнесу + меню",
+    formValue: "30 днів фітнесу + меню — 1299 грн",
     description: "Повна програма на 30 днів з меню та чек-листами",
     price: 1299
   }
@@ -23,6 +26,7 @@ const cartKey = "fitslim_cart";
 
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
+
 const openCartBtn = document.getElementById("openCartBtn");
 const closeCartBtn = document.getElementById("closeCartBtn");
 const cartPanel = document.getElementById("cartPanel");
@@ -31,8 +35,11 @@ const cartCount = document.getElementById("cartCount");
 const cartTotal = document.getElementById("cartTotal");
 const clearCartBtn = document.getElementById("clearCartBtn");
 const checkoutBtn = document.getElementById("checkoutBtn");
+
 const orderForm = document.getElementById("orderForm");
 const formMessage = document.getElementById("formMessage");
+const clientProgram = document.getElementById("clientProgram");
+const clientMessage = document.getElementById("clientMessage");
 const year = document.getElementById("year");
 
 let cart = loadCart();
@@ -173,7 +180,7 @@ function closeCart() {
 
 function getOrderSummary() {
   if (cart.length === 0) {
-    return "";
+    return "Кошик порожній";
   }
 
   return cart
@@ -199,8 +206,17 @@ function getDetailedCartText() {
     .join("\n");
 }
 
+function getPrimaryCartProduct() {
+  if (cart.length === 0) {
+    return null;
+  }
+
+  return products[cart[0].id] || null;
+}
+
 function fillFormFromCart() {
   const summary = getOrderSummary();
+  const primaryProduct = getPrimaryCartProduct();
 
   closeCart();
 
@@ -208,17 +224,22 @@ function fillFormFromCart() {
     behavior: "smooth"
   });
 
-  if (!summary) {
-    formMessage.textContent = "Спочатку додайте програму в кошик.";
+  if (!primaryProduct) {
+    showFormMessage("Спочатку додайте програму в кошик.", "error");
     return;
   }
 
-  const fullMessage = `Хочу оформити замовлення: ${summary}. Сума: ${formatTotal(getCartTotal())}`;
-  orderForm.elements.message.value = fullMessage;
-  formMessage.textContent = "Дані з кошика додано у форму заявки.";
+  clientProgram.value = primaryProduct.formValue;
+
+  clientMessage.value = `Хочу оформити заявку через кошик.
+
+Обрана програма: ${summary}
+Сума: ${formatTotal(getCartTotal())}`;
+
+  showFormMessage("Дані з кошика додано у форму заявки.");
 }
 
-function showFormMessage(message, type = "info") {
+function showFormMessage(message, type = "success") {
   formMessage.textContent = message;
 
   if (type === "error") {
@@ -234,11 +255,12 @@ async function submitFormWithRedirect(event) {
   const submitButton = orderForm.querySelector('button[type="submit"]');
   const formData = new FormData(orderForm);
 
-  formData.append("cart_summary", getOrderSummary() || "Кошик порожній");
-  formData.append("cart_details", getDetailedCartText());
-  formData.append("cart_total", formatTotal(getCartTotal()));
-  formData.append("site", "Форма без понтів");
-  formData.append("submitted_at", new Date().toLocaleString("uk-UA"));
+  formData.append("Кошик", getOrderSummary());
+  formData.append("Деталі кошика", getDetailedCartText());
+  formData.append("Сума замовлення", formatTotal(getCartTotal()));
+  formData.append("Сайт", "Форма без понтів");
+  formData.append("Посилання на сайт", "https://stari4ok26-art.github.io/fitslim-site/");
+  formData.append("Дата заявки", new Date().toLocaleString("uk-UA"));
 
   try {
     submitButton.disabled = true;

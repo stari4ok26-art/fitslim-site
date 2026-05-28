@@ -127,8 +127,17 @@ function clearCart() {
 }
 
 function renderCart() {
-  cartCount.textContent = getCartCount();
-  cartTotal.textContent = formatTotal(getCartTotal());
+  if (cartCount) {
+    cartCount.textContent = getCartCount();
+  }
+
+  if (cartTotal) {
+    cartTotal.textContent = formatTotal(getCartTotal());
+  }
+
+  if (!cartItems) {
+    return;
+  }
 
   if (cart.length === 0) {
     cartItems.innerHTML = `
@@ -169,11 +178,19 @@ function renderCart() {
 }
 
 function openCart() {
+  if (!cartPanel) {
+    return;
+  }
+
   cartPanel.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
 function closeCart() {
+  if (!cartPanel) {
+    return;
+  }
+
   cartPanel.classList.remove("active");
   document.body.style.overflow = "";
 }
@@ -214,43 +231,53 @@ function getPrimaryCartProduct() {
   return products[cart[0].id] || null;
 }
 
+function showFormMessage(message, type = "success") {
+  if (!formMessage) {
+    return;
+  }
+
+  formMessage.textContent = message;
+  formMessage.style.color = type === "error" ? "#dc2626" : "#16a34a";
+}
+
 function fillFormFromCart() {
-  const summary = getOrderSummary();
   const primaryProduct = getPrimaryCartProduct();
 
   closeCart();
 
-  document.getElementById("contact").scrollIntoView({
-    behavior: "smooth"
-  });
+  const contactSection = document.getElementById("contact");
+
+  if (contactSection) {
+    contactSection.scrollIntoView({
+      behavior: "smooth"
+    });
+  }
 
   if (!primaryProduct) {
     showFormMessage("Спочатку додайте програму в кошик.", "error");
     return;
   }
 
-  clientProgram.value = primaryProduct.formValue;
+  if (clientProgram) {
+    clientProgram.value = primaryProduct.formValue;
+  }
 
-  clientMessage.value = `Хочу оформити заявку через кошик.
+  if (clientMessage) {
+    clientMessage.value = `Хочу оформити заявку через кошик.
 
-Обрана програма: ${summary}
+Обрана програма: ${getOrderSummary()}
 Сума: ${formatTotal(getCartTotal())}`;
+  }
 
   showFormMessage("Дані з кошика додано у форму заявки.");
 }
 
-function showFormMessage(message, type = "success") {
-  formMessage.textContent = message;
-
-  if (type === "error") {
-    formMessage.style.color = "#dc2626";
-  } else {
-    formMessage.style.color = "#16a34a";
-  }
-}
-
 async function submitFormWithRedirect(event) {
   event.preventDefault();
+
+  if (!orderForm) {
+    return;
+  }
 
   const submitButton = orderForm.querySelector('button[type="submit"]');
   const formData = new FormData(orderForm);
@@ -263,8 +290,11 @@ async function submitFormWithRedirect(event) {
   formData.append("Дата заявки", new Date().toLocaleString("uk-UA"));
 
   try {
-    submitButton.disabled = true;
-    submitButton.textContent = "Відправляємо...";
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Відправляємо...";
+    }
+
     showFormMessage("Заявка відправляється...");
 
     const response = await fetch(orderForm.action, {
@@ -286,8 +316,10 @@ async function submitFormWithRedirect(event) {
   } catch (error) {
     console.error(error);
 
-    submitButton.disabled = false;
-    submitButton.textContent = "Відправити заявку";
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = "Відправити заявку";
+    }
 
     showFormMessage(
       "Не вдалося відправити заявку автоматично. Спробуйте ще раз.",
@@ -302,27 +334,47 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
   });
 });
 
-menuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
 
 document.querySelectorAll(".nav-links a").forEach((link) => {
   link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
+    if (navLinks) {
+      navLinks.classList.remove("active");
+    }
   });
 });
 
-openCartBtn.addEventListener("click", openCart);
-closeCartBtn.addEventListener("click", closeCart);
-clearCartBtn.addEventListener("click", clearCart);
-checkoutBtn.addEventListener("click", fillFormFromCart);
-orderForm.addEventListener("submit", submitFormWithRedirect);
+if (openCartBtn) {
+  openCartBtn.addEventListener("click", openCart);
+}
 
-cartPanel.addEventListener("click", (event) => {
-  if (event.target === cartPanel) {
-    closeCart();
-  }
-});
+if (closeCartBtn) {
+  closeCartBtn.addEventListener("click", closeCart);
+}
+
+if (clearCartBtn) {
+  clearCartBtn.addEventListener("click", clearCart);
+}
+
+if (checkoutBtn) {
+  checkoutBtn.addEventListener("click", fillFormFromCart);
+}
+
+if (orderForm) {
+  orderForm.addEventListener("submit", submitFormWithRedirect);
+}
+
+if (cartPanel) {
+  cartPanel.addEventListener("click", (event) => {
+    if (event.target === cartPanel) {
+      closeCart();
+    }
+  });
+}
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
@@ -330,6 +382,8 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 renderCart();

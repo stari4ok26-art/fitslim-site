@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>СТАРТ 7 — Форма без понтів</title>
-  <meta name="description" content="СТАРТ 7 — безкоштовний 7-денний домашній план тренувань для новачків від Форма без понтів." />
+  <meta name="description" content="СТАРТ 7 — домашній план тренувань на 7 днів для початку без залу, дієт і понтів." />
 
   <style>
     :root {
-      --bg: #f6f8fb;
-      --dark: #0f172a;
-      --dark-2: #182238;
-      --text: #243044;
+      --bg: #f6f8f4;
+      --dark: #111827;
+      --dark2: #172033;
+      --text: #253044;
       --muted: #64748b;
-      --green: #22c55e;
-      --green-dark: #15803d;
-      --green-soft: #dcfce7;
-      --line: rgba(15, 23, 42, 0.12);
+      --green: #4f8f3a;
+      --green2: #2f6f2c;
+      --soft: #eef7e9;
+      --line: rgba(17, 24, 39, 0.12);
       --card: #ffffff;
-      --orange-soft: #fff7ed;
-      --blue-soft: #eff6ff;
       --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
-      --radius: 26px;
+      --radius: 28px;
     }
 
     * {
@@ -36,10 +34,10 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 34%),
-        linear-gradient(180deg, #ffffff 0%, var(--bg) 45%, #ffffff 100%);
       color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(79, 143, 58, 0.16), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 48%, #ffffff 100%);
     }
 
     a {
@@ -47,37 +45,42 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(18px);
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      min-height: 76px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     .brand {
       font-weight: 950;
-      letter-spacing: -0.8px;
       font-size: 22px;
       color: var(--dark);
+      letter-spacing: -0.8px;
     }
 
     .brand span {
-      color: var(--green-dark);
+      color: var(--green);
     }
 
     .nav-links {
@@ -85,28 +88,22 @@
       align-items: center;
       gap: 14px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--muted);
     }
 
     .nav-links a:hover {
-      color: var(--green-dark);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--green);
     }
 
     .menu-btn {
       display: none;
-      border: 0;
-      background: var(--dark);
-      color: #fff;
       width: 44px;
       height: 44px;
       border-radius: 14px;
+      border: 0;
+      background: var(--dark);
+      color: #fff;
       font-size: 22px;
       cursor: pointer;
     }
@@ -120,20 +117,15 @@
       gap: 8px;
       padding: 14px 18px;
       border-radius: 999px;
-      font-weight: 900;
+      font-weight: 950;
       font-size: 14px;
       transition: 0.2s ease;
     }
 
     .btn.primary {
       background: var(--green);
-      color: #052e16;
-      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 38px rgba(34, 197, 94, 0.33);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(79, 143, 58, 0.28);
     }
 
     .btn.dark {
@@ -147,147 +139,158 @@
       border: 1px solid var(--line);
     }
 
-    .btn.full {
-      width: 100%;
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
     .hero {
-      padding: 64px 0 36px;
+      padding: 54px 0 34px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
       align-items: stretch;
     }
 
-    .hero-main,
-    .hero-side {
-      border-radius: 34px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
     .hero-main {
-      background:
-        radial-gradient(circle at 20% 10%, rgba(34, 197, 94, 0.2), transparent 32%),
-        linear-gradient(135deg, #0f172a 0%, #182238 58%, #0f172a 100%);
-      color: #fff;
-      padding: 42px;
       min-height: 520px;
+      border-radius: 36px;
+      padding: 42px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(79, 143, 58, 0.32), transparent 34%),
+        linear-gradient(135deg, #101827 0%, #1b263b 62%, #0f172a 100%);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow: hidden;
     }
 
     .hero-side {
+      border-radius: 36px;
+      padding: 18px;
       background: #fff;
-      padding: 28px;
       border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
     .tag {
       display: inline-flex;
       width: fit-content;
       align-items: center;
-      gap: 8px;
       border-radius: 999px;
       padding: 9px 13px;
-      background: rgba(34, 197, 94, 0.13);
-      color: var(--green);
+      background: rgba(79, 143, 58, 0.16);
+      color: #b8f7a9;
       font-weight: 950;
       font-size: 13px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .tag.dark-text {
-      color: var(--green-dark);
-      background: var(--green-soft);
+    .tag.green {
+      color: var(--green2);
+      background: var(--soft);
     }
 
-    .hero h1 {
+    h1 {
       margin: 0;
       font-size: clamp(42px, 7vw, 78px);
       line-height: 0.95;
       letter-spacing: -3px;
-      max-width: 760px;
     }
 
     .hero p {
+      max-width: 690px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.78);
       font-size: 18px;
       line-height: 1.65;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 710px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 26px;
     }
 
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 32px;
     }
 
     .stat {
+      border-radius: 22px;
+      padding: 17px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 22px;
-      padding: 18px;
     }
 
     .stat strong {
       display: block;
-      font-size: 28px;
       color: #fff;
+      font-size: 28px;
       margin-bottom: 4px;
     }
 
     .stat span {
-      color: rgba(255, 255, 255, 0.66);
+      color: rgba(255, 255, 255, 0.68);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 850;
+    }
+
+    .hero-photo {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .side-card {
+      margin-top: 14px;
+      border-radius: 24px;
+      padding: 20px;
       background: var(--bg);
       border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 20px;
-      margin-bottom: 14px;
     }
 
-    .side-card h2,
     .side-card h3 {
       margin: 0 0 10px;
       color: var(--dark);
-      letter-spacing: -0.6px;
+      font-size: 21px;
+      letter-spacing: -0.5px;
     }
 
     .side-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .progress {
       height: 12px;
       border-radius: 999px;
-      background: #e2e8f0;
+      background: #dde6d8;
       overflow: hidden;
-      margin-top: 12px;
+      margin-top: 13px;
     }
 
     .progress-fill {
-      height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--green), #86efac);
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), #9dd98e);
       transition: 0.3s ease;
     }
 
@@ -329,23 +332,23 @@
     }
 
     .info-card {
+      padding: 24px;
+      border-radius: var(--radius);
       background: #fff;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
       box-shadow: 0 14px 44px rgba(15, 23, 42, 0.07);
     }
 
-    .info-card.orange {
-      background: var(--orange-soft);
+    .info-card.green {
+      background: #f0f9eb;
     }
 
-    .info-card.green {
-      background: #f0fdf4;
+    .info-card.orange {
+      background: #fff7ed;
     }
 
     .info-card.blue {
-      background: var(--blue-soft);
+      background: #eff6ff;
     }
 
     .info-card h3 {
@@ -357,8 +360,8 @@
 
     .info-card p,
     .info-card li {
-      color: var(--text);
       line-height: 1.65;
+      color: var(--text);
     }
 
     .info-card ul {
@@ -367,15 +370,15 @@
     }
 
     .days-tabs {
+      position: sticky;
+      top: 74px;
+      z-index: 40;
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding: 8px 0 16px;
-      position: sticky;
-      top: 76px;
-      background: rgba(246, 248, 251, 0.93);
-      backdrop-filter: blur(15px);
-      z-index: 50;
+      padding: 9px 0 16px;
+      background: rgba(246, 248, 244, 0.94);
+      backdrop-filter: blur(14px);
     }
 
     .day-tab {
@@ -396,13 +399,13 @@
     }
 
     .day {
+      scroll-margin-top: 150px;
+      margin-bottom: 28px;
+      border-radius: 34px;
+      padding: 30px;
       background: #fff;
       border: 1px solid var(--line);
-      border-radius: 34px;
       box-shadow: var(--shadow);
-      padding: 30px;
-      margin-bottom: 28px;
-      scroll-margin-top: 150px;
     }
 
     .day-header {
@@ -410,26 +413,25 @@
       grid-template-columns: 1fr auto;
       gap: 16px;
       align-items: start;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .day-number {
       width: 74px;
       height: 74px;
       border-radius: 24px;
-      background: var(--green-soft);
-      color: var(--green-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
+      background: var(--soft);
+      color: var(--green2);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
       font-weight: 950;
     }
 
     .day h2 {
       margin: 0 0 8px;
-      font-size: clamp(28px, 5vw, 46px);
       color: var(--dark);
+      font-size: clamp(28px, 5vw, 46px);
       letter-spacing: -1.5px;
       line-height: 1.05;
     }
@@ -437,8 +439,8 @@
     .day-lead {
       margin: 0;
       color: var(--muted);
-      line-height: 1.6;
       font-size: 16px;
+      line-height: 1.6;
     }
 
     .meta {
@@ -449,35 +451,56 @@
     }
 
     .pill {
+      border-radius: 999px;
+      padding: 10px 13px;
       background: var(--bg);
       border: 1px solid var(--line);
-      padding: 10px 13px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 900;
       color: var(--dark);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .featured {
+      margin: 20px 0;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .featured img {
+      width: 100%;
+      object-fit: cover;
     }
 
     .exercise-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 18px;
-      margin-top: 22px;
+      margin-top: 20px;
     }
 
     .exercise-card {
-      border: 1px solid var(--line);
-      border-radius: 26px;
       overflow: hidden;
+      border-radius: 26px;
       background: #fff;
+      border: 1px solid var(--line);
       box-shadow: 0 12px 34px rgba(15, 23, 42, 0.07);
     }
 
-    .exercise-head {
-      padding: 18px 18px 0;
+    .exercise-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #f8fafc;
     }
 
-    .exercise-head h3 {
+    .exercise-body {
+      padding: 18px;
+    }
+
+    .exercise-body h3 {
       margin: 0 0 8px;
       color: var(--dark);
       font-size: 22px;
@@ -486,45 +509,19 @@
 
     .amount {
       display: inline-flex;
-      background: var(--green-soft);
-      color: var(--green-dark);
+      margin-bottom: 12px;
       border-radius: 999px;
       padding: 8px 11px;
+      background: var(--soft);
+      color: var(--green2);
       font-weight: 950;
       font-size: 13px;
     }
 
-    .visual {
-      margin: 16px 18px;
-      border-radius: 22px;
-      background:
-        linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      min-height: 230px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .visual svg {
-      width: 100%;
-      height: 230px;
-      display: block;
-    }
-
-    .exercise-body {
-      padding: 0 18px 18px;
-    }
-
     .exercise-body p {
       margin: 0;
-      color: var(--text);
       line-height: 1.55;
-    }
-
-    .exercise-body strong {
-      color: var(--dark);
+      color: var(--text);
     }
 
     .day-bottom {
@@ -534,14 +531,20 @@
       margin-top: 22px;
     }
 
-    .tracker {
-      background: var(--bg);
-      border: 1px solid var(--line);
+    .tracker,
+    .note-box {
       border-radius: 26px;
       padding: 22px;
+      background: var(--bg);
+      border: 1px solid var(--line);
     }
 
-    .tracker h3 {
+    .note-box {
+      background: #fff;
+    }
+
+    .tracker h3,
+    .note-box h3 {
       margin: 0 0 12px;
       color: var(--dark);
     }
@@ -552,8 +555,8 @@
       gap: 10px;
       padding: 10px 0;
       border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      font-weight: 850;
       color: var(--text);
-      font-weight: 800;
     }
 
     .check-row:last-child {
@@ -566,36 +569,18 @@
       accent-color: var(--green);
     }
 
-    .note-box {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 22px;
-    }
-
-    .note-box h3 {
-      margin: 0 0 10px;
-      color: var(--dark);
-    }
-
-    .note-box p {
-      margin: 0;
-      color: var(--text);
-      line-height: 1.65;
-    }
-
     .cta {
-      background:
-        radial-gradient(circle at top left, rgba(34, 197, 94, 0.22), transparent 35%),
-        linear-gradient(135deg, #0f172a 0%, #182238 100%);
       border-radius: 34px;
       padding: 36px;
       color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(79, 143, 58, 0.28), transparent 35%),
+        linear-gradient(135deg, #0f172a 0%, #1b263b 100%);
+      box-shadow: var(--shadow);
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 24px;
       align-items: center;
-      box-shadow: var(--shadow);
     }
 
     .cta h2 {
@@ -607,58 +592,24 @@
 
     .cta p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.72);
+      color: rgba(255, 255, 255, 0.74);
       line-height: 1.65;
     }
 
     .footer {
-      padding: 30px 0 50px;
+      padding: 30px 0 52px;
       text-align: center;
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 850;
     }
 
-    .svg-line {
-      stroke: #0f172a;
-      stroke-width: 10;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
-
-    .svg-thin {
-      stroke: #22c55e;
-      stroke-width: 6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
-
-    .svg-head {
-      fill: #0f172a;
-    }
-
-    .svg-floor {
-      stroke: rgba(15, 23, 42, 0.18);
-      stroke-width: 5;
-      stroke-linecap: round;
-    }
-
-    .svg-wall {
-      stroke: rgba(15, 23, 42, 0.2);
-      stroke-width: 5;
-      stroke-linecap: round;
-    }
-
-    .svg-label {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 20px;
+    .image-missing {
+      padding: 20px;
+      background: #fff1f2;
+      color: #9f1239;
+      border: 1px solid #fecdd3;
+      border-radius: 18px;
       font-weight: 900;
-      fill: #15803d;
-    }
-
-    .hidden {
-      display: none !important;
     }
 
     @media (max-width: 900px) {
@@ -673,17 +624,17 @@
 
       .nav-links {
         position: absolute;
-        left: 16px;
-        right: 16px;
         top: 82px;
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        box-shadow: var(--shadow);
-        padding: 16px;
+        left: 14px;
+        right: 14px;
         display: none;
         flex-direction: column;
         align-items: stretch;
+        padding: 16px;
+        border-radius: 24px;
+        background: #fff;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
       }
 
       .nav-links.active {
@@ -700,13 +651,13 @@
         justify-content: center;
       }
 
-      .stats {
-        grid-template-columns: 1fr;
+      .hero-main {
+        min-height: auto;
+        padding: 28px;
       }
 
-      .hero-main {
-        padding: 28px;
-        min-height: auto;
+      .stats {
+        grid-template-columns: 1fr;
       }
 
       .day {
@@ -716,11 +667,6 @@
       .day-header {
         grid-template-columns: 1fr;
       }
-
-      .day-number {
-        width: 64px;
-        height: 64px;
-      }
     }
 
     @media (max-width: 560px) {
@@ -728,68 +674,41 @@
         width: min(100% - 22px, 1120px);
       }
 
-      .nav-actions .btn.light {
-        display: none;
-      }
-
       .hero {
         padding-top: 30px;
       }
 
-      .hero-main {
+      .hero-actions .btn,
+      .cta .btn {
+        width: 100%;
+      }
+
+      .hero-main,
+      .hero-side,
+      .day,
+      .cta {
         border-radius: 26px;
       }
 
-      .hero h1 {
+      h1 {
         letter-spacing: -2px;
       }
 
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .visual {
-        min-height: 190px;
-      }
-
-      .visual svg {
-        height: 190px;
-      }
-
-      .cta {
-        padding: 26px;
-      }
-
-      .cta .btn {
-        width: 100%;
+      .exercise-card img {
+        aspect-ratio: 1 / 1;
       }
     }
 
     @media print {
-      body {
-        background: #fff;
-      }
-
       .topbar,
       .hero-actions,
       .days-tabs,
-      .cta .btn,
-      .nav-actions,
-      .menu-btn {
+      .cta .btn {
         display: none !important;
       }
 
-      .hero {
-        padding: 0;
-      }
-
-      .hero-grid,
-      .grid-2,
-      .grid-3,
-      .exercise-grid,
-      .day-bottom,
-      .cta {
-        grid-template-columns: 1fr;
+      body {
+        background: #fff;
       }
 
       .hero-main,
@@ -801,9 +720,18 @@
         box-shadow: none !important;
       }
 
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .exercise-grid,
+      .day-bottom,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
       .day {
-        page-break-before: always;
         break-before: page;
+        page-break-before: always;
       }
 
       .exercise-card,
@@ -830,10 +758,7 @@
         <a href="index.html#contact">Заявка</a>
       </nav>
 
-      <div class="nav-actions">
-        <button class="btn light" type="button" id="printBtn">Зберегти PDF</button>
-        <button class="menu-btn" type="button" id="menuBtn" aria-label="Відкрити меню">☰</button>
-      </div>
+      <button class="menu-btn" type="button" id="menuBtn" aria-label="Відкрити меню">☰</button>
     </div>
   </header>
 
@@ -845,24 +770,21 @@
             <div class="tag">СТАРТ 7 · Безкоштовний план</div>
             <h1>7 днів, щоб почати без хаосу</h1>
             <p>
-              Це не марафон “вбий себе за тиждень”. Це простий домашній старт:
-              кожен день має вправи, схеми виконання, харчування без дієт,
-              трекер і маленький крок, який реально зробити.
+              Простий домашній старт: вправи з нормальними картинками,
+              підказки по техніці, харчування без дієт, трекер і зрозумілий шлях на кожен день.
             </p>
 
             <div class="hero-actions">
               <a class="btn primary" href="#days">Почати з Дня 1</a>
-              <button class="btn light" type="button" id="printBtnHero">Зберегти як PDF</button>
-              <a class="btn dark" href="https://www.tiktok.com/@forma_bez_pontiv" target="_blank" rel="noopener noreferrer">
-                TikTok
-              </a>
+              <button class="btn light" type="button" id="printBtn">Зберегти як PDF</button>
+              <a class="btn dark" href="index.html#contact">Залишити заявку</a>
             </div>
           </div>
 
           <div class="stats">
             <div class="stat">
               <strong>7</strong>
-              <span>днів простого старту</span>
+              <span>днів старту</span>
             </div>
             <div class="stat">
               <strong>10–25</strong>
@@ -870,37 +792,28 @@
             </div>
             <div class="stat">
               <strong>0</strong>
-              <span>залів, понтів і магії</span>
+              <span>залів і понтів</span>
             </div>
           </div>
         </div>
 
         <aside class="hero-side">
+          <div class="hero-photo">
+            <img src="start7-img/F260B720-B651-4429-98F7-0B8CC46AE5A4.png" alt="Форма без понтів старт 7" />
+          </div>
+
           <div class="side-card">
-            <h2>Твій прогрес</h2>
-            <p>Відмічай виконані дні. Сайт запам’ятає твої галочки на цьому пристрої.</p>
+            <h3>Твій прогрес</h3>
+            <p>Відмічай виконані дні. Сайт запам’ятає галочки на цьому пристрої.</p>
             <div class="progress">
               <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p style="margin-top: 10px; font-weight: 900; color: #0f172a;" id="progressText">
-              0 з 7 днів
-            </p>
+            <p style="margin-top:10px; font-weight:950; color:#111827;" id="progressText">0 з 7 днів виконано</p>
           </div>
 
           <div class="side-card">
-            <h3>Як користуватись</h3>
-            <p>
-              Вибери день, зроби розминку, виконай вправи у своєму темпі,
-              відміть трекер і повернись завтра.
-            </p>
-          </div>
-
-          <div class="side-card">
-            <h3>Важливо</h3>
-            <p>
-              Якщо є травми, тиск, біль у спині/колінах або проблеми зі здоров’ям —
-              краще порадитись із лікарем перед стартом.
-            </p>
+            <h3>Головне правило</h3>
+            <p>Краще зробити просту версію, ніж ідеально нічого не зробити.</p>
           </div>
         </aside>
       </div>
@@ -909,11 +822,10 @@
     <section class="section" id="before">
       <div class="container">
         <div class="section-title">
-          <div class="tag dark-text">Перед стартом</div>
-          <h2>Що треба знати перед першим днем</h2>
+          <div class="tag green">Перед стартом</div>
+          <h2>Як не зірватися в перші дні</h2>
           <p>
-            Цей блок потрібен, щоб не перегоріти і не зробити дурниць на старті.
-            Наша ціль — увійти в режим, а не зламати себе.
+            Цей план не про “вбитися”. Він про те, щоб спокійно ввійти в режим і не перегоріти.
           </p>
         </div>
 
@@ -922,19 +834,17 @@
             <h3>Як не перегоріти</h3>
             <ul>
               <li>Не намагайся зробити ідеально з першого дня.</li>
-              <li>Краще 10 хвилин легко, ніж один раз “вбитися” і кинути.</li>
-              <li>Твоя задача на 7 днів — увійти в ритм.</li>
-              <li>Навіть скорочене тренування рахується.</li>
+              <li>Краще 10 хв легко, ніж один раз “вмерти” і кинути.</li>
+              <li>Твоя задача — ввійти в ритм, а не довести себе до виснаження.</li>
             </ul>
           </article>
 
           <article class="info-card green">
             <h3>Як обрати рівень</h3>
             <ul>
-              <li><strong>Легкий:</strong> 1 коло, менше повторів, довші паузи.</li>
-              <li><strong>Нормальний:</strong> робиш так, як написано в плані.</li>
+              <li><strong>Легкий:</strong> менше повторів, довші паузи.</li>
+              <li><strong>Нормальний:</strong> робиш як написано.</li>
               <li><strong>Важчий:</strong> додаєш 1 коло або верхню межу повторів.</li>
-              <li>Після тренування має бути “я попрацював”, а не “я помираю”.</li>
             </ul>
           </article>
 
@@ -944,46 +854,18 @@
               <li>Різкий біль.</li>
               <li>Запаморочення.</li>
               <li>Нудота або сильна слабкість.</li>
-              <li>Біль у грудях.</li>
-              <li>Сильна нестача повітря.</li>
+              <li>Біль у грудях або сильна нестача повітря.</li>
             </ul>
           </article>
 
           <article class="info-card">
             <h3>Якщо зовсім немає сил</h3>
             <ul>
-              <li>Зроби 5–10 хвилин руху.</li>
+              <li>Зроби 5–10 хв руху.</li>
               <li>Візьми тільки 2–3 вправи.</li>
               <li>Зменш повтори вдвічі.</li>
-              <li>Закінчи легкою розтяжкою.</li>
               <li>Головне — не випадати з ритму.</li>
             </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-title">
-          <div class="tag dark-text">Безпека</div>
-          <h2>Правила “Форми без понтів”</h2>
-        </div>
-
-        <div class="grid-3">
-          <article class="info-card">
-            <h3>Не треба тренуватись до смерті</h3>
-            <p>Якість важливіша за кількість. Техніка важливіша за швидкість.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Не треба голодувати</h3>
-            <p>Ми прибираємо хаос, а не сідаємо на жорстку дієту.</p>
-          </article>
-
-          <article class="info-card">
-            <h3>Не треба чекати понеділка</h3>
-            <p>Сьогодні достатньо зробити маленький, але реальний крок.</p>
           </article>
         </div>
       </div>
@@ -992,11 +874,9 @@
     <section class="section" id="days">
       <div class="container">
         <div class="section-title">
-          <div class="tag dark-text">План</div>
-          <h2>7 днів старту</h2>
-          <p>
-            Обирай день, дивись вправи, виконуй у своєму темпі і відмічай прогрес.
-          </p>
+          <div class="tag green">План</div>
+          <h2>СТАРТ 7 по днях</h2>
+          <p>Обирай день, дивись вправи, виконуй у своєму темпі і відмічай прогрес.</p>
         </div>
 
         <div class="days-tabs" id="daysTabs"></div>
@@ -1011,12 +891,12 @@
             <h2>Що робити після 7 днів?</h2>
             <p>
               Якщо було важко — повтори СТАРТ ще раз. Якщо режим зайшов —
-              переходь на 21 день. Якщо хочеш повну систему з меню —
+              переходь на 21 день. Якщо хочеш повну систему з харчуванням —
               обирай 30 днів фітнесу + меню.
             </p>
           </div>
 
-          <div style="display: grid; gap: 10px;">
+          <div style="display:grid; gap:10px;">
             <a class="btn primary" href="index.html#contact">Залишити заявку</a>
             <a class="btn light" href="index.html">На головний сайт</a>
           </div>
@@ -1026,192 +906,30 @@
   </main>
 
   <footer class="footer">
-    Форма без понтів · СТАРТ 7 · Тренування вдома · Схуднення · Сила
+    Форма без понтів · СТАРТ 7 · Домашні тренування · Без залу
   </footer>
 
   <script>
-    const exercisesSvg = {
-      walk: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Ходьба на місці">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="210" cy="48" r="22"></circle>
-          <path class="svg-line" d="M210 72 L205 126"></path>
-          <path class="svg-line" d="M205 92 L158 120"></path>
-          <path class="svg-line" d="M206 92 L250 116"></path>
-          <path class="svg-line" d="M205 126 L165 185 L135 225"></path>
-          <path class="svg-line" d="M205 126 L245 165 L282 164"></path>
-          <path class="svg-thin" d="M305 72 C338 92 344 130 322 158"></path>
-          <text class="svg-label" x="38" y="38">рух + дихання</text>
-        </svg>
-      `,
-      squat: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Присідання">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="215" cy="55" r="22"></circle>
-          <path class="svg-line" d="M215 80 L200 135"></path>
-          <path class="svg-line" d="M205 100 L150 104"></path>
-          <path class="svg-line" d="M205 100 L260 104"></path>
-          <path class="svg-line" d="M200 135 L155 174 L120 225"></path>
-          <path class="svg-line" d="M200 135 L252 172 L304 225"></path>
-          <path class="svg-thin" d="M120 145 C155 122 245 122 304 145"></path>
-          <text class="svg-label" x="42" y="38">таз назад</text>
-        </svg>
-      `,
-      push: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Віджимання від стіни або опори">
-          <line class="svg-wall" x1="330" y1="28" x2="330" y2="225"></line>
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="190" cy="75" r="20"></circle>
-          <path class="svg-line" d="M208 91 L260 124 L305 124"></path>
-          <path class="svg-line" d="M210 92 L175 150 L128 225"></path>
-          <path class="svg-line" d="M260 124 L305 100"></path>
-          <path class="svg-line" d="M260 124 L305 148"></path>
-          <path class="svg-thin" d="M130 125 L310 125"></path>
-          <text class="svg-label" x="42" y="38">тіло рівне</text>
-        </svg>
-      `,
-      bridge: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Ягодичний місток">
-          <line class="svg-floor" x1="50" y1="225" x2="370" y2="225"></line>
-          <circle class="svg-head" cx="112" cy="190" r="20"></circle>
-          <path class="svg-line" d="M132 188 L195 150 L270 170"></path>
-          <path class="svg-line" d="M270 170 L320 225"></path>
-          <path class="svg-line" d="M195 150 L170 225"></path>
-          <path class="svg-thin" d="M132 188 L195 150 L270 170"></path>
-          <text class="svg-label" x="42" y="38">підніми таз</text>
-        </svg>
-      `,
-      plank: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Планка">
-          <line class="svg-floor" x1="45" y1="225" x2="375" y2="225"></line>
-          <circle class="svg-head" cx="105" cy="142" r="20"></circle>
-          <path class="svg-line" d="M126 150 L220 160 L325 185"></path>
-          <path class="svg-line" d="M140 160 L105 210"></path>
-          <path class="svg-line" d="M145 162 L155 210"></path>
-          <path class="svg-line" d="M325 185 L352 225"></path>
-          <path class="svg-line" d="M325 185 L300 225"></path>
-          <path class="svg-thin" d="M126 150 L220 160 L325 185"></path>
-          <text class="svg-label" x="42" y="38">одна лінія</text>
-        </svg>
-      `,
-      bend: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Нахили корпусу вперед">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="170" cy="95" r="20"></circle>
-          <path class="svg-line" d="M190 105 L255 150"></path>
-          <path class="svg-line" d="M255 150 L230 225"></path>
-          <path class="svg-line" d="M255 150 L285 225"></path>
-          <path class="svg-line" d="M215 122 L145 174"></path>
-          <path class="svg-line" d="M220 126 L170 190"></path>
-          <path class="svg-thin" d="M252 110 C285 128 303 155 298 190"></path>
-          <text class="svg-label" x="42" y="38">від стегон</text>
-        </svg>
-      `,
-      stretch: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Легка розтяжка">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="210" cy="58" r="21"></circle>
-          <path class="svg-line" d="M210 82 C192 120 195 155 210 185"></path>
-          <path class="svg-line" d="M200 105 C155 80 130 55 120 35"></path>
-          <path class="svg-line" d="M205 130 L165 225"></path>
-          <path class="svg-line" d="M212 185 L260 225"></path>
-          <path class="svg-thin" d="M118 35 C145 32 160 44 170 65"></path>
-          <text class="svg-label" x="42" y="38">м’яко</text>
-        </svg>
-      `,
-      lunge: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Випади назад">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="205" cy="52" r="21"></circle>
-          <path class="svg-line" d="M205 76 L205 132"></path>
-          <path class="svg-line" d="M205 98 L165 124"></path>
-          <path class="svg-line" d="M205 98 L245 124"></path>
-          <path class="svg-line" d="M205 132 L250 172 L310 225"></path>
-          <path class="svg-line" d="M205 132 L160 178 L125 225"></path>
-          <path class="svg-thin" d="M125 225 L310 225"></path>
-          <text class="svg-label" x="42" y="38">крок назад</text>
-        </svg>
-      `,
-      birddog: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Пташка-собака">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="115" cy="124" r="19"></circle>
-          <path class="svg-line" d="M135 130 L220 145 L300 145"></path>
-          <path class="svg-line" d="M145 138 L85 105"></path>
-          <path class="svg-line" d="M220 145 L205 225"></path>
-          <path class="svg-line" d="M300 145 L355 105"></path>
-          <path class="svg-line" d="M245 148 L275 225"></path>
-          <path class="svg-thin" d="M85 105 L65 95"></path>
-          <path class="svg-thin" d="M355 105 L378 94"></path>
-          <text class="svg-label" x="42" y="38">баланс</text>
-        </svg>
-      `,
-      chest: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Розтяжка грудей біля стіни">
-          <line class="svg-wall" x1="328" y1="25" x2="328" y2="225"></line>
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="205" cy="65" r="21"></circle>
-          <path class="svg-line" d="M205 90 L205 150"></path>
-          <path class="svg-line" d="M205 105 L328 105"></path>
-          <path class="svg-line" d="M205 150 L165 225"></path>
-          <path class="svg-line" d="M205 150 L255 225"></path>
-          <path class="svg-thin" d="M240 118 C260 150 290 160 315 150"></path>
-          <text class="svg-label" x="42" y="38">груди відкриті</text>
-        </svg>
-      `,
-      hamstring: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Розтяжка задньої поверхні стегна">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <rect x="265" y="185" width="78" height="40" rx="8" fill="rgba(34,197,94,0.18)" stroke="rgba(15,23,42,0.18)" stroke-width="4"></rect>
-          <circle class="svg-head" cx="168" cy="75" r="20"></circle>
-          <path class="svg-line" d="M185 88 L230 135"></path>
-          <path class="svg-line" d="M230 135 L300 185"></path>
-          <path class="svg-line" d="M230 135 L190 225"></path>
-          <path class="svg-line" d="M210 113 L275 175"></path>
-          <path class="svg-thin" d="M230 135 L300 185"></path>
-          <text class="svg-label" x="42" y="38">спина рівна</text>
-        </svg>
-      `,
-      shoulders: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Круги плечима">
-          <line class="svg-floor" x1="55" y1="225" x2="365" y2="225"></line>
-          <circle class="svg-head" cx="210" cy="55" r="22"></circle>
-          <path class="svg-line" d="M210 80 L210 150"></path>
-          <path class="svg-line" d="M210 104 L170 145"></path>
-          <path class="svg-line" d="M210 104 L250 145"></path>
-          <path class="svg-line" d="M210 150 L175 225"></path>
-          <path class="svg-line" d="M210 150 L245 225"></path>
-          <path class="svg-thin" d="M145 95 C120 70 145 45 175 58"></path>
-          <path class="svg-thin" d="M275 58 C305 45 330 70 305 95"></path>
-          <text class="svg-label" x="42" y="38">плавно</text>
-        </svg>
-      `,
-      climber: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Альпініст повільно">
-          <line class="svg-floor" x1="45" y1="225" x2="375" y2="225"></line>
-          <circle class="svg-head" cx="105" cy="132" r="19"></circle>
-          <path class="svg-line" d="M125 140 L220 155 L330 182"></path>
-          <path class="svg-line" d="M145 148 L102 225"></path>
-          <path class="svg-line" d="M220 155 L180 215"></path>
-          <path class="svg-line" d="M330 182 L360 225"></path>
-          <path class="svg-line" d="M240 160 L265 205 L225 225"></path>
-          <path class="svg-thin" d="M245 115 C260 135 272 155 278 178"></path>
-          <text class="svg-label" x="42" y="38">без стрибків</text>
-        </svg>
-      `,
-      deadbug: `
-        <svg viewBox="0 0 420 260" role="img" aria-label="Мертвий жук">
-          <line class="svg-floor" x1="50" y1="225" x2="370" y2="225"></line>
-          <circle class="svg-head" cx="112" cy="190" r="20"></circle>
-          <path class="svg-line" d="M132 190 L220 190"></path>
-          <path class="svg-line" d="M175 188 L135 112"></path>
-          <path class="svg-line" d="M210 188 L260 115"></path>
-          <path class="svg-line" d="M220 190 L285 205"></path>
-          <path class="svg-line" d="M220 190 L250 140 L288 140"></path>
-          <path class="svg-thin" d="M145 95 L125 55"></path>
-          <text class="svg-label" x="42" y="38">поперек вниз</text>
-        </svg>
-      `
+    const img = (file) => `start7-img/${file}`;
+
+    const imageFiles = {
+      day1Basic: img("F260B720-B651-4429-98F7-0B8CC46AE5A4.png"),
+      deadbug: img("013FF621-DBEF-4C9C-B406-C2FED6D7A60F.png"),
+      stretch: img("056C3583-CCE0-449B-83B4-842E3EC7FEFD.png"),
+      bend: img("9A973A9D-BFBC-4D98-9852-EFE836071F0B.png"),
+      climber: img("FDCAEE29-F35F-480A-BC78-EEF46979F663.png"),
+      shoulders: img("584DE5DE-3597-4527-B881-1EDB900BE39D.png"),
+      birddog: img("F248D05E-0293-4741-B2D3-75F014FBD3AA.png"),
+      plank: img("225EA0E1-D851-469C-ADB3-A2F97F40F220.png"),
+      hamstring: img("48E3AAE5-08B5-496A-88E9-46615BDB9757.png"),
+      lunge: img("7EBD1920-30E8-4659-855B-B07549696EA2.png"),
+      chest: img("A93DD7F2-91C6-4FC6-BD9F-F4A7C0E5C86C.png"),
+      push: img("9092DABA-AE28-40D4-90F2-233DEA6AA665.png"),
+      squat: img("9C06E51D-9B44-45EB-87DE-F5438377B135.png"),
+      bridge: img("9A3620A1-1637-4734-9FFD-DED8A8B48E3E.png"),
+      walk: img("5F2C8722-FA2D-4BBB-BD5A-3F02155D070A.png"),
+      day3Core: img("80D08FAA-4757-45DE-BDF1-DF9930FBE71A.png"),
+      day4Recovery: img("EFDC386E-6774-42BF-8C25-61B5AD8EBEB5.png")
     };
 
     const days = [
@@ -1222,16 +940,16 @@
         time: "10–15 хв",
         level: "Легкий старт",
         format: "2 кола",
+        featured: imageFiles.day1Basic,
         nutrition: "Прибери 1 солодкий напій або зайвий перекус.",
         phrase: "Я не починаю ідеально. Я просто починаю.",
         after: "Випий води, пройдися 2–3 хвилини і відміть день у трекері.",
         exercises: [
-          ["Ходьба на місці", "60 сек", "Розігрійся і вирівняй дихання.", "walk"],
-          ["Присідання", "10 повторів", "Спина рівна, коліна дивляться в бік стоп.", "squat"],
-          ["Віджимання від стіни", "8 повторів", "Лікті не розводь занадто широко.", "push"],
-          ["Ягодичний місток", "12 повторів", "Піднімай таз за рахунок сідниць, не шиї.", "bridge"],
-          ["Планка", "15 сек", "Живіт підтягнутий, поперек не провисає.", "plank"],
-          ["Спокійна ходьба", "60 сек", "Заспокой дихання після кола.", "walk"]
+          ["Ходьба на місці", "60 сек", "Тримай спину рівно, крокуй ритмічно.", imageFiles.walk],
+          ["Присідання", "10 повторів", "Таз назад, коліна в напрямку стоп.", imageFiles.squat],
+          ["Віджимання від стіни / опори", "8 повторів", "Тіло рівне, лікті згинаються контрольовано.", imageFiles.push],
+          ["Ягодичний місток", "12 повторів", "Стискай сідниці, не прогинай поперек.", imageFiles.bridge],
+          ["Планка", "15 сек", "Тіло в одну лінію, живіт напружений.", imageFiles.plank]
         ]
       },
       {
@@ -1241,14 +959,15 @@
         time: "12–20 хв",
         level: "Відновлювальний день",
         format: "У своєму темпі",
+        featured: null,
         nutrition: "Зроби 1 нормальний прийом їжі: білок + овочі + гарнір + вода.",
         phrase: "Я не сідаю на дієту. Я прибираю хаос.",
         after: "Не оцінюй себе по вазі. Оціни, чи стало трохи менше хаосу.",
         exercises: [
-          ["Прогулянка / ходьба", "10–15 хв", "Йди у темпі, у якому можеш розмовляти.", "walk"],
-          ["Присідання", "20 повторів за день", "Можна розбити на 2 підходи по 10.", "squat"],
-          ["Нахили корпусу вперед", "20 повторів", "Рух м’який, без ривків.", "bend"],
-          ["Легка розтяжка", "1 хв", "Потягни спину, плечі та грудний відділ.", "stretch"]
+          ["Ходьба на місці", "10–15 хв", "Темп спокійний, дихання рівне.", imageFiles.walk],
+          ["Присідання", "20 повторів за день", "Можна розбити на 2 підходи по 10.", imageFiles.squat],
+          ["Нахили корпусу вперед", "20 повторів", "Нахиляйся від стегон, спина рівна.", imageFiles.bend],
+          ["Легка розтяжка", "1 хв", "Рухайся плавно, без різких рухів.", imageFiles.stretch]
         ]
       },
       {
@@ -1258,16 +977,17 @@
         time: "15–20 хв",
         level: "Нормальний",
         format: "3 кола",
+        featured: imageFiles.day3Core,
         nutrition: "Додай білок у 2 прийоми їжі.",
         phrase: "Мені не потрібен зал, щоб почати ставати сильнішим.",
         after: "Запиши, яка вправа була найважча. Завтра це допоможе не перегоріти.",
         exercises: [
-          ["Присідання", "10 повторів", "Опускайся настільки низько, наскільки комфортно.", "squat"],
-          ["Віджимання від опори", "8 повторів", "Можна робити від стіни або високої опори.", "push"],
-          ["Випади назад", "8 на кожну ногу", "Корпус рівний, крок середній.", "lunge"],
-          ["Ягодичний місток", "12 повторів", "У верхній точці стискай сідниці на 1 сек.", "bridge"],
-          ["Пташка-собака", "8 на кожну сторону", "Не завалюй таз, працюй повільно.", "birddog"],
-          ["Планка", "15–25 сек", "Краще коротше, але якісно.", "plank"]
+          ["Присідання", "10 повторів", "Опускайся настільки низько, наскільки комфортно.", imageFiles.squat],
+          ["Віджимання від опори", "8 повторів", "Руки на ширині плечей, тіло пряме.", imageFiles.push],
+          ["Випади назад", "8 на кожну ногу", "Крок назад, корпус стабільний.", imageFiles.lunge],
+          ["Ягодичний місток", "12 повторів", "Піднімай таз, стискаючи сідниці.", imageFiles.bridge],
+          ["Пташка-собака", "8 на кожну сторону", "Витягуй протилежні руку й ногу, не завалюйся.", imageFiles.birddog],
+          ["Планка", "15–25 сек", "Краще коротше, але якісно.", imageFiles.plank]
         ]
       },
       {
@@ -1277,15 +997,16 @@
         time: "15–20 хв",
         level: "Легкий",
         format: "1 спокійний раунд",
+        featured: imageFiles.day4Recovery,
         nutrition: "Випий 1–2 склянки води додатково до звичного.",
         phrase: "Відновлення — це не слабкість. Це частина плану.",
         after: "Сьогодні твоя перемога — не навантаження, а те, що ти не злився.",
         exercises: [
-          ["Прогулянка / ходьба", "15–20 хв", "Спокійний темп, без гонки.", "walk"],
-          ["Розтяжка грудей біля стіни", "40 сек", "Плечі опущені, груди відкриті.", "chest"],
-          ["Розтяжка задньої поверхні стегна", "40 сек на ногу", "Не пружинь, дихай спокійно.", "hamstring"],
-          ["Круги плечима", "20 разів", "Рухай плечима назад і вниз.", "shoulders"],
-          ["Планка", "2×15 сек", "Легка версія теж рахується.", "plank"]
+          ["Ходьба на місці", "15–20 хв", "Спокійний темп, без гонки.", imageFiles.walk],
+          ["Розтяжка грудей біля стіни", "40 сек", "Плечі опущені, груди відкриті.", imageFiles.chest],
+          ["Розтяжка задньої поверхні стегна", "40 сек на ногу", "Спина рівна, не пружинь.", imageFiles.hamstring],
+          ["Круги плечима", "20 разів", "Рухай плечима плавно назад і вперед.", imageFiles.shoulders],
+          ["Планка", "2×15 сек", "Легка версія теж рахується.", imageFiles.plank]
         ]
       },
       {
@@ -1295,16 +1016,17 @@
         time: "15–22 хв",
         level: "Нормальний+",
         format: "3 раунди",
+        featured: null,
         nutrition: "Перед перекусом запитай себе: “Я голодний чи просто тягне щось пожувати?”",
         phrase: "Форма стоїть не через генетику. Часто вона стоїть через хаос.",
         after: "Після тренування не компенсуй усе хаотичною їжею. Просто повернись до нормального прийому їжі.",
         exercises: [
-          ["Швидка ходьба", "45 сек", "Швидше, але без задишки.", "walk"],
-          ["Присідання", "12 повторів", "Працюй у стабільному темпі.", "squat"],
-          ["Альпініст повільно", "20 сек", "Живіт підтягнутий, крок контрольований.", "climber"],
-          ["Віджимання від опори", "8–10 повторів", "Краще чиста техніка, ніж зайві повтори.", "push"],
-          ["Ягодичний місток", "15 повторів", "Пауза у верхній точці 1 сек.", "bridge"],
-          ["Мертвий жук", "10 повторів", "Поперек притиснутий до підлоги.", "deadbug"]
+          ["Швидка ходьба", "45 сек", "Швидше, але без задишки.", imageFiles.walk],
+          ["Присідання", "12 повторів", "Працюй у стабільному темпі.", imageFiles.squat],
+          ["Альпініст повільно", "20 сек", "Коліно до грудей повільно, без стрибків.", imageFiles.climber],
+          ["Віджимання від опори", "8–10 повторів", "Краще чиста техніка, ніж зайві повтори.", imageFiles.push],
+          ["Ягодичний місток", "15 повторів", "Пауза у верхній точці 1 сек.", imageFiles.bridge],
+          ["Мертвий жук", "10 повторів", "Поперек притиснутий до підлоги.", imageFiles.deadbug]
         ]
       },
       {
@@ -1314,15 +1036,16 @@
         time: "12–18 хв",
         level: "Контрольний день",
         format: "2 підходи + розтяжка",
+        featured: null,
         nutrition: "Перевір себе: чи менше хаосу в їжі? чи стало легше почати?",
         phrase: "Мій прогрес — не тільки вага. Мій прогрес — що я не злився.",
         after: "Відміть не тільки вправи, а й самопочуття. Це важливіше за цифру на вазі.",
         exercises: [
-          ["Прогулянка / ходьба", "10 хв", "Просто розійдись і ввімкни тіло.", "walk"],
-          ["Присідання", "2×10", "Між підходами пауза 30–45 сек.", "squat"],
-          ["Віджимання від стіни", "2×8", "Тримай корпус рівним.", "push"],
-          ["Планка", "2×15–25 сек", "Зупинися до втрати техніки.", "plank"],
-          ["Легка розтяжка", "3 хв", "Плечі, спина, ноги — без болю.", "stretch"]
+          ["Ходьба на місці", "10 хв", "Просто розійдись і ввімкни тіло.", imageFiles.walk],
+          ["Присідання", "2×10", "Між підходами пауза 30–45 сек.", imageFiles.squat],
+          ["Віджимання від стіни", "2×8", "Тримай корпус рівним.", imageFiles.push],
+          ["Планка", "2×15–25 сек", "Зупинися до втрати техніки.", imageFiles.plank],
+          ["Легка розтяжка", "3 хв", "Плечі, спина, ноги — без болю.", imageFiles.stretch]
         ]
       },
       {
@@ -1332,17 +1055,17 @@
         time: "15–20 хв",
         level: "Фінальний день",
         format: "2–3 кола",
+        featured: imageFiles.day1Basic,
         nutrition: "Підбий підсумок: що було легше за все і що хочеш зберегти далі?",
         phrase: "Я не шукаю мотивацію. Я будую просту систему.",
-        after: "Якщо було важко — повтори тиждень. Якщо нормально — переходь на 21 день. Якщо хочеш повну систему — бери 30 днів.",
+        after: "Якщо було важко — повтори тиждень. Якщо нормально — переходь на 21 день.",
         exercises: [
-          ["Ходьба на місці", "60 сек", "Розминка перед фінальним колом.", "walk"],
-          ["Присідання", "12 повторів", "Рух рівний і впевнений.", "squat"],
-          ["Віджимання від опори", "8–10 повторів", "Роби свою чесну кількість.", "push"],
-          ["Випади назад", "8 на ногу", "Контроль коліна і рівноваги.", "lunge"],
-          ["Ягодичний місток", "15 повторів", "Стискай сідниці у верхній точці.", "bridge"],
-          ["Планка", "20 сек", "Тіло в одну лінію.", "plank"],
-          ["Спокійна ходьба", "60 сек", "Сповільнись і зафіксуй результат.", "walk"]
+          ["Ходьба на місці", "60 сек", "Розминка перед фінальним колом.", imageFiles.walk],
+          ["Присідання", "12 повторів", "Рух рівний і впевнений.", imageFiles.squat],
+          ["Віджимання від опори", "8–10 повторів", "Роби свою чесну кількість.", imageFiles.push],
+          ["Випади назад", "8 на ногу", "Контроль коліна і рівноваги.", imageFiles.lunge],
+          ["Ягодичний місток", "15 повторів", "Стискай сідниці у верхній точці.", imageFiles.bridge],
+          ["Планка", "20 сек", "Тіло в одну лінію.", imageFiles.plank]
         ]
       }
     ];
@@ -1354,8 +1077,7 @@
 
     function getProgress() {
       try {
-        const saved = localStorage.getItem("fbp_start7_progress");
-        return saved ? JSON.parse(saved) : {};
+        return JSON.parse(localStorage.getItem("fbp_start7_progress") || "{}");
       } catch {
         return {};
       }
@@ -1372,6 +1094,17 @@
 
       progressFill.style.width = `${percent}%`;
       progressText.textContent = `${completed} з 7 днів виконано`;
+    }
+
+    function imageTag(src, alt) {
+      return `
+        <img
+          src="${src}"
+          alt="${alt}"
+          loading="lazy"
+          onerror="this.outerHTML='<div class=&quot;image-missing&quot;>Картинка не знайдена. Перевір назву файлу в GitHub.</div>'"
+        >
+      `;
     }
 
     function renderTabs() {
@@ -1394,9 +1127,7 @@
       });
 
       const first = document.querySelector(".day-tab");
-      if (first) {
-        first.classList.add("active");
-      }
+      if (first) first.classList.add("active");
     }
 
     function renderDays() {
@@ -1419,6 +1150,12 @@
             <div class="day-number">${day.id}</div>
           </div>
 
+          ${day.featured ? `
+            <div class="featured">
+              ${imageTag(day.featured, `День ${day.id} — ${day.title}`)}
+            </div>
+          ` : ""}
+
           <div class="note-box">
             <h3>Що сьогодні робимо</h3>
             <p>
@@ -1428,20 +1165,15 @@
 
           <div class="exercise-grid">
             ${day.exercises.map(item => {
-              const [name, amount, tip, svgKey] = item;
+              const [name, amount, tip, image] = item;
 
               return `
                 <article class="exercise-card">
-                  <div class="exercise-head">
-                    <h3>${name}</h3>
-                    <span class="amount">${amount}</span>
-                  </div>
-
-                  <div class="visual">
-                    ${exercisesSvg[svgKey]}
-                  </div>
+                  ${imageTag(image, name)}
 
                   <div class="exercise-body">
+                    <h3>${name}</h3>
+                    <span class="amount">${amount}</span>
                     <p><strong>Підказка:</strong> ${tip}</p>
                   </div>
                 </article>
@@ -1518,15 +1250,9 @@
     }
 
     function setupPrint() {
-      const printBtn = document.getElementById("printBtn");
-      const printBtnHero = document.getElementById("printBtnHero");
-
-      function printPage() {
+      document.getElementById("printBtn").addEventListener("click", () => {
         window.print();
-      }
-
-      printBtn.addEventListener("click", printPage);
-      printBtnHero.addEventListener("click", printPage);
+      });
     }
 
     renderTabs();

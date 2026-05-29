@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
 
   let cart = loadCart();
-  let isMenuOpen = false;
+  let menuIsOpen = false;
 
   function loadCart() {
     const savedCart = localStorage.getItem(cartKey);
@@ -98,9 +98,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    isMenuOpen = true;
+    menuIsOpen = true;
     navLinks.classList.add("active");
     navLinks.style.display = "flex";
+    navLinks.style.flexDirection = "column";
     menuBtn.setAttribute("aria-expanded", "true");
   }
 
@@ -109,9 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    isMenuOpen = false;
+    menuIsOpen = false;
     navLinks.classList.remove("active");
     navLinks.style.display = "";
+    navLinks.style.flexDirection = "";
     menuBtn.setAttribute("aria-expanded", "false");
   }
 
@@ -119,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     event.stopPropagation();
 
-    if (isMenuOpen) {
+    if (menuIsOpen) {
       closeMenu();
     } else {
       openMenu();
@@ -372,7 +374,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuBtn) {
     menuBtn.setAttribute("aria-expanded", "false");
     menuBtn.addEventListener("click", toggleMenu);
-    menuBtn.addEventListener("touchend", toggleMenu);
   }
 
   document.querySelectorAll(".nav-links a").forEach((link) => {
@@ -382,14 +383,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("click", (event) => {
-    if (!isMenuOpen || !navLinks || !menuBtn) {
+    if (!menuIsOpen || !navLinks || !menuBtn) {
       return;
     }
 
     const clickedInsideMenu = navLinks.contains(event.target);
-    const clickedMenuButton = menuBtn.contains(event.target);
+    const clickedButton = menuBtn.contains(event.target);
 
-    if (!clickedInsideMenu && !clickedMenuButton) {
+    if (!clickedInsideMenu && !clickedButton) {
       closeMenu();
     }
   });

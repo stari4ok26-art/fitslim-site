@@ -4,158 +4,230 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Дякуємо за заявку — Форма без понтів</title>
-  <meta name="description" content="Дякуємо за заявку. Ми скоро зв’яжемося з вами." />
+  <title>Заявку отримано — Форма без понтів</title>
+  <meta name="description" content="Дякуємо за заявку. Ми отримали повідомлення і скоро зв’яжемося для підтвердження програми." />
+
+  <link rel="stylesheet" href="style.css?v=8" />
 
   <style>
-    :root {
-      --dark: #0f172a;
-      --green: #22c55e;
-      --green-dark: #16a34a;
-      --white: #ffffff;
-      --muted: #64748b;
-      --light: #f8fafc;
-      --shadow: 0 20px 50px rgba(15, 23, 42, 0.16);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--dark);
       background:
-        radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.18), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.16), transparent 30%),
-        linear-gradient(135deg, #f8fafc, #ecfdf5);
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 35%),
+        linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
     }
 
-    .thank-you-card {
-      width: min(720px, 100%);
-      padding: 42px;
-      text-align: center;
-      background: var(--white);
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-    }
-
-    .icon {
-      width: 86px;
-      height: 86px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 24px;
-      color: #052e16;
-      background: var(--green);
-      border-radius: 50%;
-      font-size: 44px;
-      font-weight: 900;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(34px, 7vw, 58px);
-      line-height: 1;
-      letter-spacing: -2px;
-    }
-
-    p {
-      max-width: 560px;
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .actions {
+    .thank-page {
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    a {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      padding: 14px 22px;
+      padding: 32px 16px;
+    }
+
+    .thank-card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 32px;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.16);
+      padding: 38px 26px;
+      text-align: center;
+    }
+
+    .thank-icon {
+      width: 96px;
+      height: 96px;
       border-radius: 999px;
-      font-weight: 900;
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-
-    a:hover {
-      transform: translateY(-2px);
-    }
-
-    .primary {
+      margin: 0 auto 24px;
+      background: #22c55e;
       color: #052e16;
-      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 54px;
+      font-weight: 900;
+      box-shadow: 0 18px 40px rgba(34, 197, 94, 0.35);
     }
 
-    .primary:hover {
-      color: var(--white);
-      background: var(--green-dark);
+    .thank-card h1 {
+      font-size: clamp(34px, 8vw, 58px);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      color: #0f172a;
+      letter-spacing: -1.5px;
     }
 
-    .secondary {
-      color: var(--dark);
-      background: #e2e8f0;
+    .thank-card .lead {
+      font-size: 20px;
+      line-height: 1.65;
+      color: #64748b;
+      max-width: 620px;
+      margin: 0 auto 28px;
     }
 
-    .small {
-      margin-top: 24px;
-      font-size: 14px;
+    .next-box {
+      margin: 28px auto;
+      text-align: left;
+      display: grid;
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .next-item {
+      background: #f8fafc;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 22px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .next-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #166534;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .next-item h2 {
+      font-size: 18px;
+      margin: 0 0 6px;
+      color: #0f172a;
+    }
+
+    .next-item p {
+      margin: 0;
+      color: #64748b;
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .thank-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .thank-note {
+      margin-top: 26px;
+      padding: 18px;
+      border-radius: 20px;
+      background: #ecfdf5;
+      color: #166534;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .brand-line {
+      margin-top: 26px;
       color: #94a3b8;
+      font-weight: 700;
     }
 
     @media (max-width: 520px) {
-      .thank-you-card {
-        padding: 30px 22px;
+      .thank-card {
         border-radius: 24px;
+        padding: 32px 18px;
       }
 
-      .actions {
-        flex-direction: column;
+      .thank-icon {
+        width: 82px;
+        height: 82px;
+        font-size: 46px;
       }
 
-      a {
+      .next-item {
+        grid-template-columns: 38px 1fr;
+      }
+
+      .next-number {
+        width: 38px;
+        height: 38px;
+      }
+
+      .thank-actions .btn {
         width: 100%;
       }
     }
   </style>
 </head>
+
 <body>
-  <main class="thank-you-card">
-    <div class="icon">✓</div>
+  <main class="thank-page">
+    <section class="thank-card">
+      <div class="thank-icon">✓</div>
 
-    <h1>Дякуємо за заявку!</h1>
+      <h1>Дякуємо за заявку!</h1>
 
-    <p>
-      Ми отримали твоє повідомлення і скоро зв’яжемося для підтвердження програми.
-      Перевір телефон, TikTok або email, який ти вказав у заявці.
-    </p>
+      <p class="lead">
+        Ми отримали твоє повідомлення. Скоро зв’яжемося, щоб підтвердити програму,
+        уточнити ціль і пояснити наступні кроки.
+      </p>
 
-    <div class="actions">
-      <a class="primary" href="index.html">Повернутися на сайт</a>
-      <a class="secondary" href="index.html#programs">Переглянути програми</a>
-      <a class="secondary" href="https://www.tiktok.com/@forma_bez_pontiv" target="_blank" rel="noopener noreferrer">
-        Перейти в TikTok
-      </a>
-    </div>
+      <div class="next-box">
+        <article class="next-item">
+          <div class="next-number">1</div>
+          <div>
+            <h2>Перевір контакт</h2>
+            <p>
+              Перевір email, TikTok або телефон, який ти вказав у заявці.
+              Відповідь може прийти туди.
+            </p>
+          </div>
+        </article>
 
-    <p class="small">
-      Форма без понтів · Тренування вдома · Схуднення · Сила
-    </p>
+        <article class="next-item">
+          <div class="next-number">2</div>
+          <div>
+            <h2>Ми уточнимо ціль</h2>
+            <p>
+              Схуднення, підтягнутись, почати рухатись, тренування вдома чи зал —
+              це допоможе підібрати нормальний старт.
+            </p>
+          </div>
+        </article>
+
+        <article class="next-item">
+          <div class="next-number">3</div>
+          <div>
+            <h2>Отримаєш план</h2>
+            <p>
+              Якщо ти обрав СТАРТ — це безкоштовний план на 7 днів.
+              Без залу, без складних схем і без понтів.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="thank-note">
+        Важливо: якщо маєш травми, тиск, біль у спині, колінах або проблеми зі здоров’ям —
+        краще порадься з лікарем перед тренуваннями.
+      </div>
+
+      <div class="thank-actions">
+        <a class="btn primary" href="index.html">Повернутися на сайт</a>
+        <a class="btn secondary" href="index.html#programs">Переглянути програми</a>
+        <a class="btn secondary" href="https://www.tiktok.com/@forma_bez_pontiv" target="_blank" rel="noopener noreferrer">
+          Наш TikTok
+        </a>
+      </div>
+
+      <p class="brand-line">
+        Форма без понтів · Тренування вдома · Схуднення · Сила
+      </p>
+    </section>
   </main>
 </body>
 </html>

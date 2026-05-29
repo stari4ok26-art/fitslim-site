@@ -493,6 +493,7 @@
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: center;
       background: #f8fafc;
     }
 
@@ -697,49 +698,13 @@
       .exercise-card img {
         aspect-ratio: 1 / 1;
       }
-    }
 
-    @media print {
-      .topbar,
-      .hero-actions,
-      .days-tabs,
-      .cta .btn {
-        display: none !important;
+      .nav {
+        min-height: 68px;
       }
 
-      body {
-        background: #fff;
-      }
-
-      .hero-main,
-      .hero-side,
-      .day,
-      .info-card,
-      .exercise-card,
-      .cta {
-        box-shadow: none !important;
-      }
-
-      .hero-grid,
-      .grid-2,
-      .grid-3,
-      .exercise-grid,
-      .day-bottom,
-      .cta {
-        grid-template-columns: 1fr;
-      }
-
-      .day {
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .exercise-card,
-      .info-card,
-      .tracker,
-      .note-box {
-        break-inside: avoid;
-        page-break-inside: avoid;
+      .brand {
+        font-size: 20px;
       }
     }
   </style>
@@ -776,7 +741,7 @@
 
             <div class="hero-actions">
               <a class="btn primary" href="#days">Почати з Дня 1</a>
-              <button class="btn light" type="button" id="printBtn">Зберегти як PDF</button>
+              <a class="btn light" href="index.html">На головний сайт</a>
               <a class="btn dark" href="index.html#contact">Залишити заявку</a>
             </div>
           </div>
@@ -1101,7 +1066,7 @@
         <img
           src="${src}"
           alt="${alt}"
-          loading="lazy"
+          loading="eager"
           onerror="this.outerHTML='<div class=&quot;image-missing&quot;>Картинка не знайдена. Перевір назву файлу в GitHub.</div>'"
         >
       `;
@@ -1249,16 +1214,9 @@
       });
     }
 
-    function setupPrint() {
-      document.getElementById("printBtn").addEventListener("click", () => {
-        window.print();
-      });
-    }
-
     renderTabs();
     renderDays();
     setupMenu();
-    setupPrint();
     updateProgress();
   </script>
 </body>
